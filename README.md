@@ -6,7 +6,7 @@ Work in progress...
 
 Coming soon, WMI support and windows form do display the data without the LCD.
 
-YoutTube Demo: <a href='https://www.youtube.com/watch?v=0hyw8KdVvFY'>Tek465B System Monitor</a>
+YoutTube Demo: <a href='https://www.youtube.com/watch?v=DcTTr-bAAss'>Tek465B System Monitor</a>
 
 <a href='https://pledgie.com/campaigns/35234'><img alt='Click here to lend your support to: Donate and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/35234.png?skin_name=chrome' border='0' ></a>
 
