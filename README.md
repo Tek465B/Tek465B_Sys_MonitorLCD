@@ -1,5 +1,5 @@
 # Tek465B_Sys_MonitorLCD
-Get windows performance counter data and print it to a aarduino/matrix LCD
+Get windows performance counter data and print it to a arduino/matrix LCD
 
 Small Program to send Computer sensor data to a MatrixOrbital like LCD(using arduino) and provide basic controls.
 Work in progress...
