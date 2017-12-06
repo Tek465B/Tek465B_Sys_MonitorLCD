@@ -25,9 +25,10 @@ namespace Tek465B_Sys_Monitor
         Dictionary<string, SavedCounter> SavedCounters = new Dictionary<string, SavedCounter>();
         byte bufind = 0;
         int count = 0;
-        void getAvailablePorts2()
-        
+        int nbrRepeat = 4;
+        bool scrollTXT = false;
 
+        void getAvailablePorts2()
         {
             String[] ports = SerialPort.GetPortNames();
             comboBox1.Items.AddRange(ports);
@@ -82,7 +83,8 @@ namespace Tek465B_Sys_Monitor
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            domainUpDown2.SelectedIndex = 6;
+            domainUpDown1.SelectedIndex = 9;
             comboBox1.SelectedIndex = Properties.Settings.Default.Port;
             comboBox2.SelectedIndex = Properties.Settings.Default.Baud;
             foreach (string lcdload in Properties.Settings.Default.L1)
@@ -372,6 +374,12 @@ namespace Tek465B_Sys_Monitor
                 send_buffer[0] = 254;
                 send_buffer[1] = 88;
                 serialPort1.Write(send_buffer, 0, 2);
+                /*if (scrollTXT)
+                {
+                    send_buffer[0] = 254;
+                    send_buffer[1] = 200;
+                    serialPort1.Write(send_buffer, 0, 2);
+                }*/
                 serialPort1.Write(textLCD2[bufind]);
                 send_buffer[0] = 254;
                 send_buffer[1] = 71;
@@ -380,7 +388,7 @@ namespace Tek465B_Sys_Monitor
                 serialPort1.Write(send_buffer, 0, 4);
                 serialPort1.Write(textLCD2[bufind + 1]);
                 repeat++;
-                if(repeat >= 4)
+                if(repeat >= nbrRepeat)
                 {
                     repeat = 0;
                     if ((bufind + 1) < (count - 1))
@@ -402,6 +410,29 @@ namespace Tek465B_Sys_Monitor
             }
             
 
+        }
+        
+        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
+        {
+            timer1.Interval = int.Parse(domainUpDown1.Text);
+        }
+
+        private void domainUpDown2_SelectedItemChanged(object sender, EventArgs e)
+        {
+            nbrRepeat = int.Parse(domainUpDown2.Text);
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            byte[] send_buffer = new byte[2];
+            if (checkBox5.CheckState == CheckState.Checked)
+            {
+                scrollTXT = true;
+            }
+            else
+            {
+                scrollTXT = false;
+            }
         }
     }
     public class SavedCounter
