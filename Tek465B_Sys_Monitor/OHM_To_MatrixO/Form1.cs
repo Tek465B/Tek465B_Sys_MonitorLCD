@@ -26,7 +26,7 @@ namespace Tek465B_Sys_Monitor
         byte bufind = 0;
         int count = 0;
         int nbrRepeat = 4;
-        bool scrollTXT = false;
+        byte scrollTXT = 2;
 
         void getAvailablePorts2()
         {
@@ -393,7 +393,7 @@ namespace Tek465B_Sys_Monitor
                     repeat = 0;
                     if ((bufind + 1) < (count - 1))
                     {
-                        bufind += 2;
+                        bufind += scrollTXT;
                     }
                     else
                     {
@@ -427,11 +427,11 @@ namespace Tek465B_Sys_Monitor
             byte[] send_buffer = new byte[2];
             if (checkBox5.CheckState == CheckState.Checked)
             {
-                scrollTXT = true;
+                scrollTXT = 1;
             }
             else
             {
-                scrollTXT = false;
+                scrollTXT = 2;
             }
         }
     }
