@@ -380,18 +380,18 @@ namespace Tek465B_Sys_Monitor
                     send_buffer[1] = 200;
                     serialPort1.Write(send_buffer, 0, 2);
                 }*/
-                serialPort1.Write(textLCD2[bufind]);
+                serialPort1.Write(textLCD2[bufind % (count + 1)]);
                 send_buffer[0] = 254;
                 send_buffer[1] = 71;
                 send_buffer[2] = 1;
                 send_buffer[3] = 2;
                 serialPort1.Write(send_buffer, 0, 4);
-                serialPort1.Write(textLCD2[bufind + 1]);
+                serialPort1.Write(textLCD2[(bufind + 1) % (count + 1)]);
                 repeat++;
                 if(repeat >= nbrRepeat)
                 {
                     repeat = 0;
-                    if ((bufind + 1) < (count - 1))
+                    if ((bufind) < (count))
                     {
                         bufind += scrollTXT;
                     }
