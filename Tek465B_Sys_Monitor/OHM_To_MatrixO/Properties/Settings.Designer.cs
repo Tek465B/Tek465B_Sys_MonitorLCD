@@ -74,5 +74,53 @@ namespace Tek465B_Sys_Monitor.Properties {
                 this["counterSave"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public int nbrRepeat {
+            get {
+                return ((int)(this["nbrRepeat"]));
+            }
+            set {
+                this["nbrRepeat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
+        public int rptDelay {
+            get {
+                return ((int)(this["rptDelay"]));
+            }
+            set {
+                this["rptDelay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool scrolling {
+            get {
+                return ((bool)(this["scrolling"]));
+            }
+            set {
+                this["scrolling"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoCnct {
+            get {
+                return ((bool)(this["AutoCnct"]));
+            }
+            set {
+                this["AutoCnct"] = value;
+            }
+        }
     }
 }

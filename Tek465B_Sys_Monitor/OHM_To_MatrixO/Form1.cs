@@ -56,6 +56,10 @@ namespace Tek465B_Sys_Monitor
             }
             Properties.Settings.Default.Port = comboBox1.SelectedIndex;
             Properties.Settings.Default.Baud = comboBox2.SelectedIndex;
+            Properties.Settings.Default.nbrRepeat = domainUpDown2.SelectedIndex;
+            Properties.Settings.Default.rptDelay = domainUpDown1.SelectedIndex;
+            Properties.Settings.Default.scrolling = checkBox5.Checked;
+            Properties.Settings.Default.AutoCnct = checkBox6.Checked;
 
             Properties.Settings.Default.L1.Clear();
             foreach(string lcdsave in textLCD)
@@ -83,10 +87,24 @@ namespace Tek465B_Sys_Monitor
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            domainUpDown2.SelectedIndex = 6;
-            domainUpDown1.SelectedIndex = 9;
+            domainUpDown2.SelectedIndex = Properties.Settings.Default.nbrRepeat;
+            domainUpDown1.SelectedIndex = Properties.Settings.Default.rptDelay;
             comboBox1.SelectedIndex = Properties.Settings.Default.Port;
             comboBox2.SelectedIndex = Properties.Settings.Default.Baud;
+            checkBox5.Checked = Properties.Settings.Default.scrolling;
+            checkBox6.Checked = Properties.Settings.Default.AutoCnct;
+
+            
+
+            if (checkBox5.CheckState == CheckState.Checked)
+            {
+                scrollTXT = 1;
+            }
+            else
+            {
+                scrollTXT = 2;
+            }
+
             foreach (string lcdload in Properties.Settings.Default.L1)
             {
                 textLCD.Add(lcdload);
@@ -131,12 +149,38 @@ namespace Tek465B_Sys_Monitor
                     classesF1[MyCounter.Key] = new PerformanceCounter(MyCounter.Value.Category, MyCounter.Value.Counter, MyCounter.Value.Instance);
                 }
             }
-            
+
             /*foreach(string nameload in Properties.Settings.Default.CounterName)
             {
                 SavedCounters[nameload] = new SavedCounter(Properties.Settings.Default.CounterCategory[0], Properties.Settings.Default.CounterEName[0], Properties.Settings.Default.CounterInstance[0]);
             }*/
             //System.Diagnostics.PerformanceCounterCategory.GetCategories();
+            if (checkBox6.CheckState == CheckState.Checked)
+            {
+                try
+                {
+                    serialPort1.PortName = comboBox1.Text;
+                    serialPort1.BaudRate = Convert.ToInt32(comboBox2.Text);
+                    serialPort1.Open();
+                    //progressBar1.Value = 100;
+                    toolStripProgressBar1.Value = 100;
+                    toolStripStatusLabel1.Text = "Connected";
+                    button1.Enabled = false;
+                    button2.Enabled = true;
+                    button3.Enabled = true;
+                    checkBox1.Enabled = true;
+                    checkBox2.Enabled = true;
+                    checkBox3.Enabled = true;
+                    checkBox4.Enabled = true;
+                    trackBar1.Enabled = true;
+                    timer1.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    timer1.Enabled = false;
+                    MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void Form1_Move(object sender, EventArgs e)
