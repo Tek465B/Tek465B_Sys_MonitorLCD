@@ -76,6 +76,7 @@ namespace Tek465B_Sys_Monitor
 
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!this.ShowInTaskbar) this.ShowInTaskbar = true;
             this.Show();
             this.WindowState = FormWindowState.Normal;
         }
@@ -174,6 +175,8 @@ namespace Tek465B_Sys_Monitor
                     checkBox4.Enabled = true;
                     trackBar1.Enabled = true;
                     timer1.Enabled = true;
+                    this.WindowState = FormWindowState.Minimized;
+                    this.ShowInTaskbar = false;
                 }
                 catch (Exception ex)
                 {
@@ -195,6 +198,7 @@ namespace Tek465B_Sys_Monitor
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if(!this.ShowInTaskbar)this.ShowInTaskbar = true;
             this.Show();
             this.WindowState = FormWindowState.Normal;
         }

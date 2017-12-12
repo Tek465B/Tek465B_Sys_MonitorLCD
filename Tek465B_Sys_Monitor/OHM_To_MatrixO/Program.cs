@@ -17,7 +17,6 @@ namespace Tek465B_Sys_Monitor
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            
         }
         
     }
